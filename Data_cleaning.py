@@ -3,11 +3,12 @@ import numpy as np
 
 
 df=pd.read_csv("Data.csv")
+colums=(df.columns).tolist()
+# print((colums))
 # print(data.info())
 # so first i need to extact the data from the csv file 
 #this is where i need to think like an DS, i need to see which is imp for the output
-to_remove=['PropertyID', 'ListingDate', 'Address', 'City', 'State', 'ZipCode',
-           'PropertyType', 'YearBuilt', 'DaysOnMarket', 'PriceReduction', 'ViewCount', 'SavedCount', 'PreviousPrice']
+to_remove=['ZipCode','YearBuilt','PriceReduction','ViewCount','SavedCount','PreviousPrice']
 
 # df=df.drop(df[to_remove],inplace=True)
 # df=df.drop('ViewCount')
@@ -175,9 +176,15 @@ reqcoloums=[ 'Bedrooms','Bathrooms','SquareFeet','LotSize','Garage','Pool',
 y=df['SalePrice'].astype(float).to_numpy().reshape(-1, 1)
 
 x=df[reqcoloums].astype(float)
-
 x=x.to_numpy()
-
+# print(df.info())
+#an addition for output data
+# df=df.drop(df[to_remove],inplace=True)
+# print(to_remove)
+df=df[colums]
+df = df.dropna(axis=1)
+print(df.info())
+# df.to_csv("Output_data.csv")
 
 
 

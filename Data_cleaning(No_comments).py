@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 
 df = pd.read_csv("Data.csv")
+colums=(df.columns).tolist()
 to_remove = ['PropertyID', 'ListingDate', 'Address', 'City', 'State', 'ZipCode',
              'PropertyType', 'YearBuilt', 'DaysOnMarket', 'PriceReduction', 'ViewCount', 'SavedCount', 'PreviousPrice']
 
@@ -120,3 +121,6 @@ y = df['SalePrice'].astype(float).to_numpy().reshape(-1, 1)
 x = df[reqcoloums].astype(float)
 
 x = x.to_numpy()
+df=df[colums]
+df = df.dropna(axis=1)
+df.to_csv("Output_data.csv")
